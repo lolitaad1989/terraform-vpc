@@ -4,3 +4,8 @@ module "vpc" {
 
 #b default it clones from main branch
 #we cannot parameterize on module souces
+
+module "vpc" {
+  source = "./vendor/modules/vpc"
+  VPC_CIDR = var.VPC_CIDR
+}
