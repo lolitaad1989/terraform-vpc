@@ -1,8 +1,12 @@
 pipeline {
     agent any
     stages {
+        parameters {
+        choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Pick something')
+    }
         stage('Terraform init') {
             steps {
+                sh "terrafile -f env-${ENV}/Terrafile"
                 sh "terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars"
             }
         }
