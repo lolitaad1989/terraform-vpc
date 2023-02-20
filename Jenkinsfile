@@ -1,9 +1,9 @@
 pipeline {
     agent any
-    stages {
-        parameters {
+    parameters {
         choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Pick something')
     }
+    stages {
         stage('Terraform init') {
             steps {
                 sh "terrafile -f env-${ENV}/Terrafile"
